@@ -1,60 +1,28 @@
-from django.contrib import admin
+# urls.py
+
 from django.urls import path
 
 from taskmanager import views
 
-urlpatterns = [
 
-    path('admin/', admin.site.urls),
+urlpatterns = [
 
     path('', views.home, name='home'),
 
-    path(
-        'create-task/',
-        views.create_task,
-        name='create_task'
-    ),
+    path('signup/', views.signup_view, name='signup'),
 
-    path(
-        'edit-task/<int:id>/',
-        views.edit_task,
-        name='edit_task'
-    ),
+    path('login/', views.login_view, name='login'),
 
-    path(
-        'delete-task/<int:id>/',
-        views.delete_task,
-        name='delete_task'
-    ),
+    path('logout/', views.logout_view, name='logout'),
 
-    path(
-        'signup/',
-        views.signup_view,
-        name='signup'
-    ),
+    path('create-task/', views.create_task, name='create_task'),
 
-    path(
-        'login/',
-        views.login_view,
-        name='login'
-    ),
+    path('edit-task/<int:id>/', views.edit_task, name='edit_task'),
 
-    path(
-        'logout/',
-        views.logout_view,
-        name='logout'
-    ),
+    path('delete-task/<int:id>/', views.delete_task, name='delete_task'),
 
-    path(
-        'api/tasks/',
-        views.task_api,
-        name='task_api'
-    ),
+    path('create-project/', views.create_project, name='create_project'),
 
-    path(
-        'api/projects/',
-        views.project_api,
-        name='project_api'
-    ),
+    
 
 ]

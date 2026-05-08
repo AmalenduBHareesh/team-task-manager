@@ -1,7 +1,13 @@
+<!-- edit_task.html -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Edit Task</title>
 
@@ -9,139 +15,110 @@
 
 </head>
 
-<body class="bg-light">
+<body style="background:#f4f7fc;">
 
 <div class="container mt-5">
 
-    <div class="row justify-content-center">
+    <div class="card shadow p-5">
 
-        <div class="col-md-6">
+        <h1 class="mb-4">
+            Edit Task
+        </h1>
 
-            <div class="card shadow p-4">
+        <form method="POST">
 
-                <h2 class="mb-4">
+            {% csrf_token %}
 
-                    Edit Task
+            <select
+                name="project"
+                class="form-control mb-3"
+            >
 
-                </h2>
+                {% for project in projects %}
 
-                <form method="POST">
+                <option
+                    value="{{ project.id }}"
+                    {% if task.project.id == project.id %}selected{% endif %}
+                >
+                    {{ project.name }}
+                </option>
 
-                    {% csrf_token %}
+                {% endfor %}
 
-                    <input
-                        type="text"
-                        name="title"
-                        class="form-control mb-3"
-                        value="{{ task.title }}"
-                    >
+            </select>
 
-                    <textarea
-                        name="description"
-                        class="form-control mb-3"
-                    >{{ task.description }}</textarea>
+            <input
+                type="text"
+                name="title"
+                value="{{ task.title }}"
+                class="form-control mb-3"
+                required
+            >
 
-                    <select
-                        name="project"
-                        class="form-control mb-3"
-                    >
+            <textarea
+                name="description"
+                class="form-control mb-3"
+                rows="5"
+            >{{ task.description }}</textarea>
 
-                        {% for project in projects %}
+            <select
+                name="status"
+                class="form-control mb-3"
+            >
 
-                        <option
-                            value="{{ project.id }}"
+                <option
+                    value="Pending"
+                    {% if task.status == 'Pending' %}selected{% endif %}
+                >
+                    Pending
+                </option>
 
-                            {% if project.id == task.project.id %}
-                                selected
-                            {% endif %}
-                        >
+                <option
+                    value="In Progress"
+                    {% if task.status == 'In Progress' %}selected{% endif %}
+                >
+                    In Progress
+                </option>
 
-                            {{ project.name }}
+                <option
+                    value="Completed"
+                    {% if task.status == 'Completed' %}selected{% endif %}
+                >
+                    Completed
+                </option>
 
-                        </option>
+            </select>
 
-                        {% endfor %}
+            <input
+                type="date"
+                name="due_date"
+                value="{{ task.due_date|date:'Y-m-d' }}"
+                class="form-control mb-3"
+            >
 
-                    </select>
+            <select
+                name="assigned_to"
+                class="form-control mb-4"
+            >
 
-                    <select
-                        name="assigned_to"
-                        class="form-control mb-3"
-                    >
+                {% for user in users %}
 
-                        {% for user in users %}
+                <option
+                    value="{{ user.id }}"
+                    {% if task.assigned_to.id == user.id %}selected{% endif %}
+                >
+                    {{ user.username }}
+                </option>
 
-                        <option
-                            value="{{ user.id }}"
+                {% endfor %}
 
-                            {% if user.id == task.assigned_to.id %}
-                                selected
-                            {% endif %}
-                        >
+            </select>
 
-                            {{ user.username }}
+            <button class="btn btn-primary w-100">
+                Update Task
+            </button>
 
-                        </option>
-
-                        {% endfor %}
-
-                    </select>
-
-                    <select
-                        name="status"
-                        class="form-control mb-3"
-                    >
-
-                        <option
-                            value="Pending"
-
-                            {% if task.status == 'Pending' %}
-                                selected
-                            {% endif %}
-                        >
-                            Pending
-                        </option>
-
-                        <option
-                            value="In Progress"
-
-                            {% if task.status == 'In Progress' %}
-                                selected
-                            {% endif %}
-                        >
-                            In Progress
-                        </option>
-
-                        <option
-                            value="Completed"
-
-                            {% if task.status == 'Completed' %}
-                                selected
-                            {% endif %}
-                        >
-                            Completed
-                        </option>
-
-                    </select>
-
-                    <input
-                        type="date"
-                        name="due_date"
-                        class="form-control mb-3"
-                        value="{{ task.due_date|date:'Y-m-d' }}"
-                    >
-
-                    <button class="btn btn-primary w-100">
-
-                        Update Task
-
-                    </button>
-
-                </form>
-
-            </div>
-
-        </div>
+        </form>
 
     </div>
 

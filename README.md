@@ -1,22 +1,29 @@
 # Team Task Manager
 
-## Setup
+A Django-based web application for managing projects and tasks with role-based access.
 
-### Create Virtual Environment
-python -m venv venv
+## Features
 
-### Activate
-venv\Scripts\activate
+- Authentication (Login/Signup)
+- Project Management
+- Task Management
+- Dashboard Analytics
+- REST APIs
+- Admin & Member Roles
 
-### Install Dependencies
-pip install -r requirements.txt
+## Tech Stack
 
-### Run Migrations
-python manage.py makemigrations
-python manage.py migrate
+- Python
+- Django
+- Django REST Framework
+- SQLite
+- Bootstrap
 
-### Create Superuser
-python manage.py createsuperuser
+## APIs
 
-### Run Server
-python manage.py runserver
+- /api/tasks/
+- /api/projects/
+
+## Author
+
+Amalendu B Hareesh

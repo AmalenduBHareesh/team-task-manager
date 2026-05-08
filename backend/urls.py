@@ -32,7 +32,7 @@ urlpatterns = [
 
 
     
-    path('createsuper/', views.create_superuser),
+    # path('createsuper/', views.create_superuser),
 
     
 

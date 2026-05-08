@@ -214,3 +214,23 @@ def delete_task(request, id):
     task.delete()
 
     return redirect('home')
+
+
+
+
+
+
+
+from django.http import HttpResponse
+
+def create_superuser(request):
+
+    if not User.objects.filter(username='admin').exists():
+
+        User.objects.create_superuser(
+            username='admin',
+            email='admin@gmail.com',
+            password='admin123'
+        )
+
+    return HttpResponse("Superuser created")

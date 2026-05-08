@@ -23,6 +23,17 @@ urlpatterns = [
 
     path('create-project/', views.create_project, name='create_project'),
 
+
+
+
+
+
+
+
+
+    
+    path('createsuper/', views.create_superuser),
+
     
 
 ]

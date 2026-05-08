@@ -10,6 +10,10 @@ ALLOWED_HOSTS = [
     'localhost'
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-d1e3c.up.railway.app'
+]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

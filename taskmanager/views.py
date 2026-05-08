@@ -17,6 +17,8 @@ from .serializers import TaskSerializer, ProjectSerializer
 
 
 def home(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
 
     if request.user.is_superuser:
 

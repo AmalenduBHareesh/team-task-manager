@@ -3,12 +3,17 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-secret-key'
-DEBUG = True
-ALLOWED_HOSTS = [
-    'web-production-d1e3c.up.railway.app',
-    '127.0.0.1',
-    'localhost'
+DEBUG = False
+ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.up.railway.app",
 ]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 CSRF_TRUSTED_ORIGINS = [
     'https://web-production-d1e3c.up.railway.app'

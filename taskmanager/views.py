@@ -68,11 +68,16 @@ def login_view(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
 
+        print(username)
+        print(password)
+
         user = authenticate(
             request,
             username=username,
             password=password
         )
+
+        print(user)
 
         if user is not None:
 
@@ -89,7 +94,6 @@ def login_view(request):
         )
 
     return render(request, 'taskmanager/login.html')
-
 
 # LOGOUT
 def logout_view(request):
